@@ -8,7 +8,7 @@ export interface ICheckBoxProps
   > {}
 
 /**
- * Checkbox
+ * Checkbox component
  */
 function CheckBox(props: ICheckBoxProps) {
   return <input {...props} />;

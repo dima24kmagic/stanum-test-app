@@ -21,7 +21,15 @@ function CountriesList(props: ICountriesListProps) {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div
+          className="my-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        ></div>
+        Loading...
+      </>
+    );
   }
 
   if (error) {
@@ -43,23 +51,5 @@ function CountriesList(props: ICountriesListProps) {
       })}
     </div>
   );
-}
-
-function useCountriesList() {
-  const [countries, setCountries] = useState([]);
-  useEffect(() => {
-    (async () => {
-      try {
-        const query = await fetch(`http://localhost:3000/api/getCountriesList`);
-        const res = await query.json();
-        setCountries(res);
-        return res;
-      } catch (e) {
-        setCountries([]);
-      }
-    })();
-  }, []);
-
-  return countries;
 }
 export default CountriesList;
