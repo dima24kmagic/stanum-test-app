@@ -7,29 +7,29 @@
 Обязательные пакеты: NextJS, Typescript ✅
 Необязательные: Tailwind, Recoil, React Query
 (использовал tailwind + react query)
+
 Плюсом будет: Контейнеризация через docker compose✅
+
 Результат выложить на Github/Gitlab, расшарить репу на email: alex.craftsman@gmail.com
 
-## Running app
-
+## Running app on your machine
 Development
 ```shell 
-npm run dev (for development)
+npm run dev
 ```
 Production
 ```shell
 npm run build && npm start
 ```
 
-### Running with docker
-First you need to build image
+### Running with docker compose
+Build image
 ```shell
 docker compose -f docker-compose.prod.yml build
 ```
-Once you build image you can start container with
+Start container
 ```shell
 docker compose -f docker-compose.prod.yml up
 ```
-
 
 Open [http://localhost:3000](http://localhost:3000)
