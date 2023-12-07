@@ -9,13 +9,18 @@ export interface ICountryRowProps {
 }
 
 const CHECKED_COUNTRIES_STORAGE = "checkedCountries";
-const handleUpdateLocalStorage = (
-  countryAbbreviation: string,
-  isChecked: boolean,
-) => {
+const handleUpdateLocalStorage = ({
+  currencyAbbreviation,
+  countryAbbreviation,
+  isChecked,
+}: {
+  countryAbbreviation: string;
+  currencyAbbreviation: string;
+  isChecked: boolean;
+}) => {
   const checkedCounties = getCheckedCountriesStorage();
   if (isChecked) {
-    checkedCounties[countryAbbreviation] = true;
+    checkedCounties[countryAbbreviation] = currencyAbbreviation;
   } else {
     delete checkedCounties[countryAbbreviation];
   }
@@ -41,16 +46,19 @@ function CountryRow(props: ICountryRowProps) {
   );
   const handleOnChange = () => {
     setIsChecked(!isChecked);
-    handleUpdateLocalStorage(countryAbbreviation, !isChecked);
+    handleUpdateLocalStorage({
+      countryAbbreviation,
+      currencyAbbreviation,
+      isChecked: !isChecked,
+    });
   };
   return (
     <div
       className="container flex justify-between
-                   border-solid border-sky-500 border-2 rounded
-                   py-3 px-5
-                   max-w-none sm:max-w-sm
-                   mb-2
-      "
+                 border-solid border-sky-500 border-2 rounded
+                 py-3 px-5
+                 max-w-none sm:max-w-sm
+                 mb-2"
     >
       <label htmlFor={countryAbbreviation} className="hover:cursor-pointer">
         {countryName} {isChecked && `| ${currencyAbbreviation}`}

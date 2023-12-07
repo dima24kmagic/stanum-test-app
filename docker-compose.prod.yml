@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web-app:
+    container_name: stanum-web-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import CountryRow from "@/components/CountryRow";
 import { ICountry } from "countries-list";
+import { useQuery } from "react-query";
 
 export interface ICountriesListProps {}
 
@@ -9,10 +10,26 @@ export interface ICountriesListProps {}
  * Countries List
  */
 function CountriesList(props: ICountriesListProps) {
-  const countries = useCountriesList();
+  const {
+    isLoading,
+    error,
+    data = [],
+  } = useQuery("countriesList", () =>
+    fetch(`${window?.location?.origin}/api/getCountriesList`).then((res) =>
+      res.json(),
+    ),
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error getting countries list!</div>;
+  }
   return (
     <div>
-      {countries?.map((country: ICountry) => {
+      {data.map((country: ICountry) => {
         return (
           <CountryRow
             // @ts-ignore
