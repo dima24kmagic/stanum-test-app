@@ -55,12 +55,13 @@ function CountryRow(props: ICountryRowProps) {
   return (
     <div
       className="container flex justify-between
+                 bg-blue-950
                  border-solid border-sky-500 border-2 rounded
                  py-3 px-5
                  max-w-none sm:max-w-sm
                  mb-2"
     >
-      <label htmlFor={countryAbbreviation} className="hover:cursor-pointer">
+      <label htmlFor={countryAbbreviation} className="hover:cursor-pointer text-slate-100">
         {countryName} {isChecked && `| ${currencyAbbreviation}`}
       </label>
       <CheckBox
